@@ -23,6 +23,7 @@ class Player {
   draw() {
     c.fillStyle = this.color;
     c.fillRect(this.x, this.y, this.w, this.h);
+    drawImage(this.x, this.y, this.w, this.h, "./images/player.jpeg");
   }
 
   touchWall() {
@@ -77,7 +78,7 @@ class Player {
             }
             this.vy += GRAVITY;
           } else {
-            if (!this.onGround) {
+            if (!this.onGround && this.vy > GRAVITY) {
               playSound(soundPaths.impact);
             }
 
@@ -195,7 +196,7 @@ class Player {
               }
               this.vy += GRAVITY;
             } else {
-              if (!this.onGround) {
+              if (!this.onGround && this.vy > GRAVITY) {
                 playSound(soundPaths.impact);
               }
               this.onGround = true;

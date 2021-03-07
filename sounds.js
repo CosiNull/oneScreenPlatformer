@@ -11,8 +11,17 @@ let soundPaths = {
 
 let playSound = (path) => {
   let myAudio = new Audio();
+  if (path == myAudio.impact) {
+    myAudio.volume = 1.5;
+  }
   myAudio.src = path;
   myAudio.play();
 };
 
 let miniSwitchActivate = false;
+
+let drawImage = (x, y, w, h, src) => {
+  let myImage = new Image();
+  myImage.src = src;
+  c.drawImage(myImage, x, y, w, h);
+};
