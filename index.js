@@ -9,8 +9,11 @@ setInterval(() => {
   for (o of phaseBlocks) {
     o.update();
   }
+  if (miniSwitchActivate) {
+    playSound(soundPaths.miniSwitch);
+  }
 }, 1000);
-let level = 1;
+let level = 14;
 let resetWhenDeath = true;
 reset();
 let gameMode = "menu";
