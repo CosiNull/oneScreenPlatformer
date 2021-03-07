@@ -11,8 +11,10 @@ let soundPaths = {
 
 let playSound = (path) => {
   let myAudio = new Audio();
-  if (path == myAudio.impact) {
-    myAudio.volume = 1.5;
+  if (path == soundPaths.impact) {
+    myAudio.volume = 1;
+  } else if (path == soundPaths.jump) {
+    myAudio.volume = 0.6;
   }
   myAudio.src = path;
   myAudio.play();
