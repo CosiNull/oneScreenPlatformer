@@ -52,6 +52,10 @@ class Player {
       //
       if (touchPoints.length == 4) {
         if (this.vy > 0) {
+          if (!this.onGround) {
+            playSound(soundPaths.impact);
+          }
+
           this.onGround = true;
           this.groundEntity = o;
           this.y = o.y - this.h;
@@ -73,6 +77,10 @@ class Player {
             }
             this.vy += GRAVITY;
           } else {
+            if (!this.onGround) {
+              playSound(soundPaths.impact);
+            }
+
             this.onGround = true;
             this.groundEntity = o;
             this.y = o.y - this.h;
@@ -93,6 +101,9 @@ class Player {
       } else if (touchPointsDes.length == 1) {
         if (touchPointsDes == "down_right") {
           if (this.vy > 0) {
+            if (!this.onGround) {
+              playSound(soundPaths.impact);
+            }
             this.onGround = true;
             this.groundEntity = o;
             this.y = o.y - this.h;
@@ -100,6 +111,9 @@ class Player {
           }
         } else if (touchPointsDes == "down_left") {
           if (this.vy > 0) {
+            if (!this.onGround) {
+              playSound(soundPaths.impact);
+            }
             this.onGround = true;
             this.groundEntity = o;
             this.y = o.y - this.h;
@@ -131,8 +145,10 @@ class Player {
       if (collision(this, l)) {
         if (resetWhenDeath) {
           //console.log(1);
+          playSound(soundPaths.lava);
           reset();
         } else {
+          playSound(soundPaths.lava);
           this.onGround = false;
           this.x = this.original.x;
           this.y = this.original.y;
@@ -179,6 +195,9 @@ class Player {
               }
               this.vy += GRAVITY;
             } else {
+              if (!this.onGround) {
+                playSound(soundPaths.impact);
+              }
               this.onGround = true;
               this.groundEntity = o;
               this.y = o.y - this.h;
@@ -199,6 +218,9 @@ class Player {
         } else if (touchPointsDes.length == 1) {
           if (touchPointsDes == "down_right") {
             if (this.vy > 0) {
+              if (!this.onGround) {
+                playSound(soundPaths.impact);
+              }
               this.onGround = true;
               this.groundEntity = o;
               this.y = o.y - this.h;
@@ -208,6 +230,9 @@ class Player {
             ////console.log(2);
           } else if (touchPointsDes == "down_left") {
             if (this.vy > 0) {
+              if (!this.onGround) {
+                playSound(soundPaths.impact);
+              }
               this.onGround = true;
               this.groundEntity = o;
               this.y = o.y - this.h;
@@ -240,8 +265,10 @@ class Player {
         if (collision(this, o)) {
           if (resetWhenDeath) {
             //console.log(1);
+            playSound(soundPaths.lava);
             reset();
           } else {
+            playSound(soundPaths.lava);
             this.onGround = false;
             this.x = this.original.x;
             this.y = this.original.y;
@@ -287,6 +314,9 @@ class Player {
             }
             this.vy += GRAVITY;
           } else {
+            if (!this.onGround) {
+              playSound(soundPaths.switch);
+            }
             this.onGround = true;
             this.groundEntity = o;
             this.y = o.y - this.h;
@@ -307,6 +337,9 @@ class Player {
       } else if (touchPointsDes.length == 1) {
         if (touchPointsDes == "down_right") {
           if (this.vy > 0) {
+            if (!this.onGround) {
+              playSound(soundPaths.switch);
+            }
             this.onGround = true;
             this.groundEntity = o;
             this.y = o.y - this.h;
@@ -315,6 +348,9 @@ class Player {
           //console.log(2);
         } else if (touchPointsDes == "down_left") {
           if (this.vy > 0) {
+            if (!this.onGround) {
+              playSound(soundPaths.switch);
+            }
             this.onGround = true;
             this.groundEntity = o;
             this.y = o.y - this.h;
@@ -345,6 +381,8 @@ class Player {
     }
     if (circleTouchRect(end.x, end.y, end.r, this.x, this.y, this.w, this.h)) {
       resetWhenDeath = false;
+      miniSwitchActivate = false;
+      playSound(soundPaths.win);
       level++;
       reset();
       if (level == LEVELS.length) {
@@ -357,6 +395,19 @@ class Player {
         ];
       } else if (level > LEVELS.length) {
         gameMode = "win";
+
+        let msg = new SpeechSynthesisUtterance();
+        let voices = window.speechSynthesis.getVoices();
+        msg.voice = voices[6]; // Note: some voices don't support altering params
+        msg.voiceURI = "native";
+        msg.volume = 1; // 0 to 1
+        msg.rate = 1; // 0.1 to 10
+        msg.pitch = 1.8; //0 to 2
+        msg.text =
+          " ... Congratulations you won by beating my 14 levels! Thanks for playing!";
+        msg.lang = "en-UK";
+
+        speechSynthesis.speak(msg);
       }
     }
   }

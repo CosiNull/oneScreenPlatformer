@@ -15,6 +15,7 @@ function clavier() {
     player.onGround = false;
     player.groundEntity = {};
     player.vy -= 9;
+    playSound(soundPaths.jump);
   }
 
   if (37 in keyDown) {
@@ -59,6 +60,7 @@ function clavier() {
 
 let waitForSpace = () => {
   if (32 in keyDown) {
+    playSound(soundPaths.click);
     gameMode = "play";
   }
 };

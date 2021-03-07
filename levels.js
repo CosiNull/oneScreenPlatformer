@@ -333,6 +333,7 @@ const LEVELS = [
   {
     name: "Level 10",
     layout: () => {
+      miniSwitchActivate = true;
       player = new Player(18, 400, 18, 18);
 
       obstacles.push(new Obstacle(canvas.width / 2 - 10, 100, 50, 700));
@@ -381,6 +382,7 @@ const LEVELS = [
   {
     name: "Level 11",
     layout: () => {
+      miniSwitchActivate = true;
       player = new Player(600, 50, 18, 18);
 
       obstacles.push(new Obstacle(canvas.width / 2 - 10, 100, 50, 700));
@@ -475,6 +477,7 @@ const LEVELS = [
   {
     name: "Level 13",
     layout: () => {
+      miniSwitchActivate = true;
       player = new Player(50, 440, 18, 18);
 
       obstacles.push(new Obstacle(430, 570, 630, 120));

@@ -4,6 +4,7 @@ let startGame = () => {
   reset();
 
   gameMode = "message";
+  playSound(soundPaths.click);
 };
 let messages = [
   "ARROW KEYS TO MOVE (←,→)",

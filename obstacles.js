@@ -233,6 +233,7 @@ class Faller extends Obstacle {
       if (this.currentCount == -1) {
         this.currentCount = 0;
         this.solid = false;
+        playSound(soundPaths.miniSwitch);
         if (player.groundEntity == this) {
           player.groundEntity = null;
           player.onGround = false;
