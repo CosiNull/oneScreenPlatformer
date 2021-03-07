@@ -13,7 +13,7 @@ setInterval(() => {
     playSound(soundPaths.miniSwitch);
   }
 }, 1000);
-let level = 14;
+let level = 1;
 let resetWhenDeath = true;
 reset();
 let gameMode = "menu";
